@@ -1,0 +1,26 @@
+
+
+
+/* MAIN
+--------------------------------------------------------- */
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'termina', sans-serif;
+    font-weight: 600;
+}
+
+#scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100vh;
+
+    // pointer-events: none;
+}
+
+
