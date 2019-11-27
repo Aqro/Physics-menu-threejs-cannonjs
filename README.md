@@ -1,38 +1,16 @@
-# Gooey hover effect with Three.js
+# Physics menu with Three.js and Cannon.js
 
-Learn how to create a reveal gooey effect on an image with Three using noise within a shader.
+*Description*, *author*
 
-![Thumbnail Gooey Hover Effect](https://codropspz-tympanus.netdna-ssl.com/codrops/wp-content/uploads/2019/10/ThumbnailGooeyHoverEffect.jpg)
+![Image Title](link)
 
-[Article on Codrops](https://tympanus.net/codrops/?p=43947)
+[Article on Codrops](https://tympanus.net/codrops/?p=)
 
 [Demo](http://tympanus.net/Development/.../)
 
-## Installation
-Run this command in the terminal
-```
-npm install
-```
-
-Compile the code
-```
-npm run build
-```
-
-Compile the code with a local server
-```
-npm run watch
-```
-
-
 ## Credits
 
-- Images from [Unsplash](https://unsplash.com)
-- [Three.js](https://threejs.org/docs/)
-- [GSAP from GreenSock](https://greensock.com/)
-- [Smooth Scrollbar](https://idiotwu.github.io/smooth-scrollbar/)
-- [glslify](https://github.com/glslify/glslify)
-- [glsl-noise](https://www.npmjs.com/package/glsl-noise)
+*third party resources*
 
 ## License
 This resource can be used freely if integrated or build upon in personal or commercial projects such as websites, web apps and web templates intended for sale. It is not allowed to take the resource "as-is" and sell it, redistribute, re-publish it, or sell "pluginized" versions of it. Free plugins built using this resource should have a visible mention and link to the original work. Always consider the licenses of all included libraries, scripts and images used.
@@ -45,3 +23,8 @@ Follow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www
 
 
 [© Codrops 2019](http://www.codrops.com)
+
+
+
+
+
