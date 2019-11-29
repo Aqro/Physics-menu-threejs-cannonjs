@@ -100,8 +100,7 @@ a:focus {
     }
 }
 
-.frame__links a:not(:last-child),
-.frame__demos a:not(:last-child) {
+.frame__links a:not(:last-child) {
     margin-bottom: 1rem;
 }
 
@@ -143,7 +142,7 @@ a:focus {
         pointer-events: none;
         grid-template-columns: 75% 25%;
         grid-template-rows: auto auto auto;
-        grid-template-areas: 'title ...'
+        grid-template-areas: 'title demos'
                             '... ...'
                             '... links';
     }
@@ -165,9 +164,15 @@ a:focus {
         opacity: .5;
     }
     .frame__demos {
+        display: flex;
+        align-items: center;
         margin: 0;
         grid-area: demos;
         justify-self: end;
+
+        a:not(:last-child) {
+            margin-right: 1rem;
+        }
     }
     .frame__links {
         grid-area: links;

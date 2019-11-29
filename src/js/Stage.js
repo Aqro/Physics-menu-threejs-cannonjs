@@ -3,12 +3,8 @@ import Scene from './Scene'
 export default class Stage {
 
     constructor() {
-        this.$els = {
-            scene       : document.getElementById('scene'),
-        }
 
-
-        this.init()
+        this.setup()
 
         this.bindEvents()
     }
@@ -17,7 +13,7 @@ export default class Stage {
         //
     }
 
-    init() {
+    setup() {
         this.scene = new Scene()
     }
 

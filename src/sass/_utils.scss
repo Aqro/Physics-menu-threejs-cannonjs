@@ -75,3 +75,19 @@ $mq-input: (
         }
     }
 }
+
+
+/* MISC
+---------------------------------------------------------------------------------------------------- */
+
+.visually-hidden {
+    overflow: hidden !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px;
+    padding: 0;
+
+    border: 0;
+    clip: rect(0 0 0 0);
+}

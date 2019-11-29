@@ -11,8 +11,8 @@ const APP = window.APP || {}
 const initApp = () => {
     window.APP = APP
 
-    APP.Stage = new Stage()
     APP.Layout = new Layout()
+    APP.Stage = new Stage()
 }
 
 if (document.readyState === 'complete' || (document.readyState !== 'loading' && !document.documentElement.doScroll)) {
