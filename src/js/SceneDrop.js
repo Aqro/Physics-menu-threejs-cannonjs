@@ -29,9 +29,7 @@ export default class Scene {
 
         // Init Three components
         this.scene = new THREE.Scene()
-        this.scene.fog = new THREE.Fog(0x202533, -1, 100)
-
-        this.clock = new THREE.Clock()
+        this.scene.fog = new THREE.Fog(0x202533, -10, 100)
 
         this.setCamera()
         this.setLights()
@@ -68,7 +66,7 @@ export default class Scene {
         const { W, H } = APP.Layout
         const aspect = W / H
 
-        this.camera = new THREE.OrthographicCamera(-distance * aspect, distance * aspect, distance, -distance, -1, 100)
+        this.camera = new THREE.OrthographicCamera(-distance * aspect, distance * aspect, distance, -distance, -10, 100)
 
         this.camera.position.set(-10, 10, 10)
         this.camera.lookAt(new THREE.Vector3())
@@ -127,7 +125,7 @@ export default class Scene {
 
         this.menu.update()
 
-        this.world.step(1 / 60, this.clock.getDelta(), 1000)
+        this.world.step(1 / 60)
     }
 
 }

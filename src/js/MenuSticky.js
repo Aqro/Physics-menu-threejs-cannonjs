@@ -131,11 +131,11 @@ export default class Menu {
 
         if (intersects.length > 0) {
             const obj = intersects[0]
-            const { object } = obj
+            const { object, face } = obj
 
             if (!object.isMesh) return
 
-            const impulse = new THREE.Vector3().copy(obj.face.normal).negate().multiplyScalar(force)
+            const impulse = new C.Vec3().copy(face.normal).scale(-force);
 
             this.words.forEach((word) => {
                 word.children.forEach((letter) => {

@@ -1,5 +1,6 @@
 import SceneDrop from './SceneDrop'
 import SceneSticky from './SceneSticky'
+import SceneHinge from './SceneHinge'
 
 export default class Stage {
 
@@ -19,6 +20,8 @@ export default class Stage {
     setup() {
         if (document.body.classList.contains('demo-2')) {
             this.mainScene = new SceneSticky()
+        } else if (document.body.classList.contains('demo-3')) {
+            this.mainScene = new SceneHinge()
         } else {
             this.mainScene = new SceneDrop()
         }

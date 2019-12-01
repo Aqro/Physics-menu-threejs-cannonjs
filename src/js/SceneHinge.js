@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import C from 'cannon'
 import OrbitControls from 'three-orbitcontrols'
 
-import MenuSticky from './MenuSticky'
+import MenuHinge from './MenuHinge'
 
 import CannonDebugRenderer from './utils/CannonDebugRenderer'
 
@@ -29,7 +29,7 @@ export default class Scene {
 
         // Init Three components
         this.scene = new THREE.Scene()
-        this.scene.fog = new THREE.Fog(0x312929, -10, 100)
+        this.scene.fog = new THREE.Fog(0x1a1e1c, -10, 100)
 
         this.setCamera()
         this.setLights()
@@ -91,7 +91,7 @@ export default class Scene {
             canvas: this.$stage,
         })
 
-        this.renderer.setClearColor(0x312929)
+        this.renderer.setClearColor(0x1a1e1c)
         this.renderer.setSize(APP.Layout.W, APP.Layout.H)
         this.renderer.setPixelRatio(window.devicePixelRatio)
 
@@ -99,7 +99,7 @@ export default class Scene {
     }
 
     addObjects() {
-        this.menu = new MenuSticky(this.scene, this.world, this.camera)
+        this.menu = new MenuHinge(this.scene, this.world, this.camera)
     }
 
 
