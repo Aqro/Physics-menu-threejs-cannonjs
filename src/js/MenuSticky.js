@@ -38,7 +38,7 @@ export default class Menu {
     setup(font) {
         this.words = []
         this.margin = 6
-        this.offset = this.$navItems.length * this.margin * 0.5
+        this.offset = this.$navItems.length * this.margin * 0.5 - 1
 
         const options = {
             font,
@@ -62,7 +62,10 @@ export default class Menu {
                 const progress = (j) / (innerText.length - 1)
 
                 // Three.js
-                const material = new THREE.MeshPhongMaterial({ color: colors[i].from.lerp(colors[i].to, progress) })
+                const material = new THREE.MeshPhongMaterial({
+                    color: colors[i].from.lerp(colors[i].to, progress),
+                    shininess: 200,
+                })
                 const geometry = new THREE.TextBufferGeometry(letter, options)
 
                 geometry.computeBoundingBox()
@@ -75,7 +78,7 @@ export default class Menu {
                 mesh.size.multiply(new THREE.Vector3(0.5, 0.5, 0.5))
 
                 // Cannon.js
-                mesh.initPosition = new C.Vec3(words.len * 2, i * this.margin - this.offset, 0)
+                mesh.initPosition = new C.Vec3(words.len * 2, (this.$navItems.length - 1 - i) * this.margin - this.offset, 0)
 
                 words.len += mesh.size.x
 
@@ -174,14 +177,16 @@ export default class Menu {
                 const letter = word.children[i]
                 const nextLetter = i + 1 === word.children.length ? null : word.children[i + 1]
 
-                if (!nextLetter) return
+                if (!nextLetter) continue
 
                 const c = new C.ConeTwistConstraint(letter.body, nextLetter.body, {
-                    pivotA: new C.Vec3(letter.size.x, 0, 0),
-                    pivotB: new C.Vec3(-letter.size.x, 0, 0),
+                    pivotA: new C.Vec3(letter.size.x * 0.7, letter.size.y, 0),
+                    pivotB: new C.Vec3(-letter.size.x * 0.7, letter.size.y, 0),
                     axisA: C.Vec3.UNIT_X,
                     axisB: C.Vec3.UNIT_X,
-                    maxForce: 1e2,
+                    // maxForce: 1e2,
+                    angle: 0,
+                    twistAngle: 0,
                 })
                 c.collideConnected = true
 
@@ -256,15 +261,15 @@ export default class Menu {
 const fontURL = './dist/fonts/helvetiker_bold.typeface.json'
 const colors = [
     {
-        from : new THREE.Color(0xff699f),
-        to   : new THREE.Color(0xa769ff),
+        from : new THREE.Color('#DF872D'),
+        to   : new THREE.Color('#B35E07'),
     },
     {
-        from : new THREE.Color(0xE5DB2D),
-        to   : new THREE.Color(0xE52D75),
+        from : new THREE.Color('#e2ad76'),
+        to   : new THREE.Color('#bb7d6e'),
     },
     {
-        from : new THREE.Color(0x5d3d42),
-        to   : new THREE.Color(0x5d2d29),
+        from : new THREE.Color('#5d3d42'),
+        to   : new THREE.Color('#5d2d29'),
     },
 ]

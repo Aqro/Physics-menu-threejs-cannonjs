@@ -102,16 +102,12 @@ export default class Scene {
     }
 
     addObjects() {
-        if (document.body.classList.contains('demo-2')) {
-            this.menu = new MenuSticky(this.scene, this.world, this.camera)
-        } else {
-            this.menu = new MenuDrop(this.scene, this.world, this.camera)
-        }
+        this.menu = new MenuDrop(this.scene, this.world, this.camera)
     }
 
 
     setupDebug() {
-        // this.dbr = new CannonDebugRenderer(this.scene, this.world)
+        this.dbr = new CannonDebugRenderer(this.scene, this.world)
 
         this.controls = new OrbitControls(this.camera, this.renderer.domElement)
         this.controls.enableKeys = false

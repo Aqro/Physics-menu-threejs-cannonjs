@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import C from 'cannon'
+import { pick } from './utils'
 
 // Options
-const force = 30
+const force = 25
 
 
 
@@ -16,6 +17,7 @@ export default class Menu {
         this.camera = camera
 
         this.loader = new THREE.FontLoader()
+        this.clock = new THREE.Clock()
 
         // Setups
         this.totalMass = 1
@@ -54,7 +56,7 @@ export default class Menu {
             bevelSegments: 10,
         }
 
-        this.$navItems.forEach(($item, i) => {
+        Array.from(this.$navItems).reverse().forEach(($item, i) => {
             const { innerText } = $item
 
             const words = new THREE.Group()
@@ -69,12 +71,13 @@ export default class Menu {
             })
 
             words.isGroundDisplayed = false
+            const randomColor = pick(colors)
 
             Array.from(innerText).forEach((letter, j) => {
                 const progress = (j) / (innerText.length - 1)
 
                 // Three.js
-                const material = new THREE.MeshPhongMaterial({ color: colors[i].from.lerp(colors[i].to, progress) })
+                const material = new THREE.MeshPhongMaterial({ color: randomColor.from.clone().lerp(randomColor.to, progress) })
                 const geometry = new THREE.TextBufferGeometry(letter, options)
 
                 geometry.computeBoundingBox()
@@ -87,8 +90,8 @@ export default class Menu {
                 mesh.size.multiply(new THREE.Vector3(0.5, 0.5, 0.5))
 
                 // Cannon.js
-                mesh.initPosition = new C.Vec3(words.len * 2, i * this.margin - this.offset, 0)
-                mesh.initPositionOffset = new C.Vec3(mesh.initPosition.x, mesh.initPosition.y + 50 + j * 0.2, mesh.initPosition.z)
+                mesh.initPosition = new C.Vec3(words.len * 2, (this.$navItems.length - 1 - i) * this.margin - this.offset, 0)
+                mesh.initPositionOffset = new C.Vec3(mesh.initPosition.x, mesh.initPosition.y + (i + 1) * 30 + 30 + j * 0.01, mesh.initPosition.z)
 
                 words.len += mesh.size.x
 
@@ -98,7 +101,8 @@ export default class Menu {
                     mass: this.totalMass / innerText.length,
                     position: mesh.initPositionOffset,
                     material: this.cMaterial,
-                    linearDamping: 0.1,
+                    // linearDamping: 0.1,
+                    angularDamping: 0.99,
                 })
 
                 mesh.body.addShape(box, new C.Vec3(mesh.geometry.boundingSphere.center.x, mesh.geometry.boundingSphere.center.y, mesh.geometry.boundingSphere.center.z))
@@ -172,7 +176,7 @@ export default class Menu {
 
                 setTimeout(() => {
                     this.world.removeBody(word.ground)
-                }, 200 * (this.words.length + i))
+                }, 150 * (1 - this.clock.getDelta()) * (this.words.length + i))
             })
         }
     }
@@ -184,21 +188,21 @@ export default class Menu {
     update() {
         if (!this.words) return
 
-        this.words.forEach((word) => {
+        this.words.forEach((word, j) => {
             for (let i = 0; i < word.children.length; i++) {
                 const letter = word.children[i]
 
                 letter.position.copy(letter.body.position)
                 letter.quaternion.copy(letter.body.quaternion)
 
-                if (letter.body.position.y <= -100) {
+                if (j === this.words.length - 1 && letter.body.position.y <= -50) {
                     this.reset()
                 }
 
 
                 if (word.isGroundDisplayed) continue
 
-                if (letter.body.position.y * 0.95 <= letter.initPosition.y) {
+                if (letter.body.position.y + letter.initPosition.y <= 0) {
                     this.world.addBody(word.ground)
 
                     word.isGroundDisplayed = true
@@ -212,10 +216,18 @@ export default class Menu {
         this.words.forEach((word) => {
             word.isGroundDisplayed = false
 
+            const randomColor = pick(colors)
+
             for (let i = 0; i < word.children.length; i++) {
+                const progress = (i) / (word.children.length - 1)
+
                 const letter = word.children[i]
                 letter.body.sleep()
                 const { x, y, z } = letter.initPositionOffset
+
+                letter.material.color = randomColor.from.clone().lerp(randomColor.to, progress)
+
+                letter.material.needsUpdate = true
 
                 letter.body.position.set(x - word.len, y, z)
                 letter.body.quaternion.set(0, 0, 0, 1)
@@ -238,7 +250,7 @@ export default class Menu {
                 const letter = word.children[i]
                 const nextLetter = i + 1 === word.children.length ? null : word.children[i + 1]
 
-                if (!nextLetter) return
+                if (!nextLetter) continue
 
                 const c = new C.ConeTwistConstraint(letter.body, nextLetter.body, {
                     pivotA: new C.Vec3(letter.size.x, 0, 0),
@@ -247,6 +259,7 @@ export default class Menu {
                     axisB: C.Vec3.UNIT_X,
                     angle: 0,
                     twistAngle: 0,
+                    maxForce: 1e30,
                 })
 
                 c.collideConnected = true
@@ -267,15 +280,35 @@ export default class Menu {
 const fontURL = './dist/fonts/helvetiker_bold.typeface.json'
 const colors = [
     {
-        from : new THREE.Color(0xff699f),
-        to   : new THREE.Color(0xa769ff),
+        from : new THREE.Color('#ff699f'),
+        to   : new THREE.Color('#a769ff'),
     },
     {
-        from : new THREE.Color(0x683fee),
-        to   : new THREE.Color(0x527ee1),
+        from : new THREE.Color('#683fee'),
+        to   : new THREE.Color('#527ee1'),
     },
     {
-        from : new THREE.Color(0xee663f),
-        to   : new THREE.Color(0xf5678d),
+        from : new THREE.Color('#ee663f'),
+        to   : new THREE.Color('#f5678d'),
+    },
+    {
+        from : new THREE.Color('#ee9ca7'),
+        to   : new THREE.Color('#ffdde1'),
+    },
+    {
+        from : new THREE.Color('#f7971e'),
+        to   : new THREE.Color('#ffd200'),
+    },
+    {
+        from : new THREE.Color('#56ccf2'),
+        to   : new THREE.Color('#2f80ed'),
+    },
+    {
+        from : new THREE.Color('#fc5c7d'),
+        to   : new THREE.Color('#6a82fb'),
+    },
+    {
+        from : new THREE.Color('#dce35b'),
+        to   : new THREE.Color('#45b649'),
     },
 ]

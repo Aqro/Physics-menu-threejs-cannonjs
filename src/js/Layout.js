@@ -4,8 +4,6 @@ export default class Layout {
     constructor() {
         this.onResize()
 
-        this.isMobile  = window.matchMedia('(max-width: 767px)').matches
-
         this.bindEvents()
     }
 
@@ -14,6 +12,8 @@ export default class Layout {
     }
 
     onResize() {
+        this.isMobile  = window.matchMedia('(max-width: 767px)').matches
+
         this.W = window.innerWidth
         this.H = window.innerHeight
     }
