@@ -3,7 +3,6 @@ import C from 'cannon'
 import OrbitControls from 'three-orbitcontrols'
 
 import MenuSticky from './MenuSticky'
-import MenuDrop from './MenuDrop'
 
 import CannonDebugRenderer from './utils/CannonDebugRenderer'
 
