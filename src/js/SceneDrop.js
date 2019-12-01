@@ -68,7 +68,7 @@ export default class Scene {
         const { W, H } = APP.Layout
         const aspect = W / H
 
-        this.camera = new THREE.OrthographicCamera(-distance * aspect, distance * aspect, distance, -distance, -1000, 1000)
+        this.camera = new THREE.OrthographicCamera(-distance * aspect, distance * aspect, distance, -distance, -1, 100)
 
         this.camera.position.set(-10, 10, 10)
         this.camera.lookAt(new THREE.Vector3())
