@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import C from 'cannon'
 
 // Options
-const force = 15
+const force = 50
 
 
 export default class Menu {
@@ -17,7 +17,7 @@ export default class Menu {
         this.loader = new THREE.FontLoader()
 
         // Setups
-        this.totalMass = 1
+        this.totalMass = 3
         this.cMaterial = new C.Material({ friction: 0 })
 
         this.mouse = new THREE.Vector2()
@@ -112,7 +112,7 @@ export default class Menu {
                     pivotB: new C.Vec3(0, 0, 0),
                     axisA: C.Vec3.UNIT_X,
                     axisB: C.Vec3.UNIT_X,
-                    maxForce: 1e12,
+                    maxForce: 1e3,
                 })
 
                 this.world.addConstraint(hingePivot)
@@ -205,9 +205,9 @@ export default class Menu {
 
                 if (!nextLetter) continue
 
-                const dist = letter.body.position.distanceTo(nextLetter.body.position) * 1.01
+                const dist = letter.body.position.distanceTo(nextLetter.body.position)
 
-                const c = new C.DistanceConstraint(letter.body, nextLetter.body, dist, 1)
+                const c = new C.DistanceConstraint(letter.body, nextLetter.body, dist, 1e3)
                 c.collideConnected = true
 
                 this.world.addConstraint(c)
