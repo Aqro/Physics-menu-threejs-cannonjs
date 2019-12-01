@@ -122,7 +122,7 @@ export default class Menu {
             frictionEquationStiffness: 1e6,
             frictionEquationRelaxation: 3,
             restitution: 0.2,
-            contactEquationStiffness: 1e6,
+            contactEquationStiffness: 1e20,
             contactEquationRelaxation: 3,
         })
 
