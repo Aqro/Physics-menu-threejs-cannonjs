@@ -4,7 +4,7 @@ Learn the basics of physics engine in WebGL with [Cannon.js](https://github.com/
 
 ![Physics in WebGL with cannonjs and threejs](https://tympanus.net/codrops/wp-content/uploads/2019/12/thumb-tutorial-physics-cannonjs.jpg)
 
-[Article on Codrops](https://tympanus.net/codrops/?p=)
+[Article on Codrops](https://tympanus.net/codrops/?p=45191)
 
 [Demo](http://tympanus.net/Development/.../)
 
