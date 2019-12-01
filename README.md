@@ -1,6 +1,6 @@
 # Physics menu with Three.js and Cannon.js
 
-*Description*, *author*
+Learn the basics of physics engine in WebGL with [Cannon.js](https://github.com/schteppe/cannon.js) and render it with [Three.js](https://threejs.org/). by [Arno Di Nunzio](https://twitter.com/aqro)
 
 ![Image Title](link)
 
@@ -10,7 +10,8 @@
 
 ## Credits
 
-*third party resources*
+- [Three.js](https://threejs.org/)
+- [Cannon.js](https://github.com/schteppe/cannon.js)
 
 ## License
 This resource can be used freely if integrated or build upon in personal or commercial projects such as websites, web apps and web templates intended for sale. It is not allowed to take the resource "as-is" and sell it, redistribute, re-publish it, or sell "pluginized" versions of it. Free plugins built using this resource should have a visible mention and link to the original work. Always consider the licenses of all included libraries, scripts and images used.
