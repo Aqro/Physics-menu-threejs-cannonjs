@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import C from 'cannon'
 
 // Options
-const force = 30
+const force = 10
 
 
 export default class Menu {
@@ -131,7 +131,7 @@ export default class Menu {
 
         if (intersects.length > 0) {
             const obj = intersects[0]
-            const { object, face } = obj
+            const { object, face, point } = obj
 
             if (!object.isMesh) return
 
@@ -143,7 +143,9 @@ export default class Menu {
 
                     if (letter !== object) return
 
-                    body.applyLocalImpulse(impulse, new C.Vec3())
+                    const localPoint = new THREE.Vector3().subVectors(point, letter.position)
+
+                    body.applyLocalImpulse(impulse, new C.Vec3(localPoint.x, localPoint.y, localPoint.z))
                 })
             })
         }
