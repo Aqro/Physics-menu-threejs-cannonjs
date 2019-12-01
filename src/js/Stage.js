@@ -29,8 +29,7 @@ export default class Stage {
     --------------------------------------------------------- */
 
     onResize() {
-        if (!APP.Layout.isMobile && !this.mainScene) return
-        const scl = 0.7
+        const scl = APP.Layout.isMobile ? 0.7 : 1
 
         this.mainScene.scene.scale.set(scl, scl, scl)
     }
