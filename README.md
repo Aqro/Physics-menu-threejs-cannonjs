@@ -8,6 +8,22 @@ Learn the basics of physics engine in WebGL with [Cannon.js](https://github.com/
 
 [Demo](http://tympanus.net/Development/.../)
 
+## Installation
+Run this command in the terminal
+```
+npm install
+```
+
+Compile the code
+```
+npm run build
+```
+
+Compile the code with a local server
+```
+npm run watch
+```
+
 ## Credits
 
 - [Three.js](https://threejs.org/)
