@@ -6,7 +6,7 @@ Learn the basics of how to do physics in WebGL using [Cannon.js](https://github.
 
 [Article on Codrops](https://tympanus.net/codrops/?p=45191)
 
-[Demo](http://tympanus.net/Development/.../)
+[Demo](http://tympanus.net/Tutorials/PhysicsMenu/)
 
 ## Installation
 Run this command in the terminal
