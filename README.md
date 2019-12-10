@@ -1,6 +1,6 @@
-# Physics menu with Three.js and Cannon.js
+# Physics Menu with Three.js and Cannon.js
 
-Learn the basics of physics engine in WebGL with [Cannon.js](https://github.com/schteppe/cannon.js) and render it with [Three.js](https://threejs.org/). by [Arno Di Nunzio](https://twitter.com/aqro)
+Learn the basics of how to do physics in WebGL using [Cannon.js](https://github.com/schteppe/cannon.js) and render it with [Three.js](https://threejs.org/). By [Arno Di Nunzio](https://twitter.com/aqro)
 
 ![Physics in WebGL with cannonjs and threejs](https://tympanus.net/codrops/wp-content/uploads/2019/12/thumb-tutorial-physics-cannonjs.jpg)
 
